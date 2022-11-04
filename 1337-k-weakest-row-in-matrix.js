@@ -23,25 +23,39 @@ matrix[i][j] is either 0 or 1.
 
 var kWeakestRows = function (mat, k) {
   let strength = [];
-  let output = [];
   for (let i = 0; i < mat.length; i++) {
     let sum = 0;
-    output.push(i);
     for (let j = 0; j < mat[i].length; j++) {
       sum += mat[i][j];
     }
-    strength.push(sum);
+    strength.push([sum, i]);
   }
-  console.log(strength, output);
+  strength.sort((a, b) => {
+    if (a[0] < b[0]) {
+      return -1;
+    }
+    if (a[0] > b[0]) {
+      return 1;
+    }
+    return 0;
+  });
+  let output = [];
+  for (let i = 0; i < k; i++) {
+    output.push(strength[i][1]);
+  }
+  return output;
 };
 
-kWeakestRows(
-  [
-    [1, 1, 0, 0, 0],
-    [1, 1, 1, 1, 0],
-    [1, 0, 0, 0, 0],
-    [1, 1, 0, 0, 0],
-    [1, 1, 1, 1, 1],
-  ],
-  3
+console.log(
+  kWeakestRows(
+    [
+      [1, 0, 0, 0],
+      [1, 1, 1, 1],
+      [1, 0, 0, 0],
+      [1, 0, 0, 0],
+    ],
+    2
+  )
 );
+
+// Accepted! Runtime 108ms
