@@ -3,11 +3,6 @@ Given an array of integers (nums) and an integer (target), return indices of the
 as they add up to (target).
 */
 
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
 var twoSum = function (nums, target) {
   const numsIdx = [];
   for (let i = 0; i < nums.length - 1; i++) {
